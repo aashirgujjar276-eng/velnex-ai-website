@@ -71,6 +71,34 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* DEMO VIDEO */}
+<section className="relative px-6 sm:px-10 lg:px-16 py-24 lg:py-32 border-t border-white/10 bg-[#0D0D10]">
+  <Reveal>
+    <div className="flex items-center gap-2 mb-4" style={fontMono}>
+      <span className="text-[#FF7A45] text-xs tracking-[0.3em] uppercase">See it in action</span>
+    </div>
+    <h2 style={fontDisplay} className="uppercase leading-[0.95] tracking-tight text-white text-[clamp(2rem,5vw,3.5rem)] mb-4">
+      Watch an agent handle a real task, start to finish.
+    </h2>
+    <p style={fontBody} className="text-white/70 text-sm sm:text-base leading-relaxed max-w-lg mb-10">
+      No mockups. This is an actual Velnex AI agent completing a workflow end-to-end.
+    </p>
+  </Reveal>
+
+  <Reveal>
+    <div className="w-full aspect-video rounded-xl overflow-hidden border border-white/10">
+      <iframe
+        title="Velnex AI Demo"
+        src="https://www.youtube-nocookie.com/embed/w2H0ltp8-x8"
+        className="w-full h-full"
+        style={{ border: "none" }}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        loading="lazy"
+      />
+    </div>
+  </Reveal>
+</section>
 
       {/* SERVICES */}
       <section id="services" className="relative px-6 sm:px-10 lg:px-16 py-24 lg:py-32 border-t border-white/10">
