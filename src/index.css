@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0a0c;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fade-up 0.9s cubic-bezier(0.16,1,0.3,1) both; }
+.fade-up-1 { animation: fade-up 0.9s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
+.fade-up-2 { animation: fade-up 0.9s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
+.fade-up-3 { animation: fade-up 0.9s cubic-bezier(0.16,1,0.3,1) 0.45s both; }
+.fade-up-4 { animation: fade-up 0.9s cubic-bezier(0.16,1,0.3,1) 0.6s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .fade-up-1, .fade-up-2, .fade-up-3, .fade-up-4 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.ember-focus:focus-visible {
+  outline: 2px solid #FF7A45;
+  outline-offset: 3px;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #FF7A45 !important;
+}
