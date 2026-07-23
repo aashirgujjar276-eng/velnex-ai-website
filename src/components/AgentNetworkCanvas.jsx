@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-export default function AgentNetworkCanvas() {
+export default function AgentNetworkCanvas({ light = false }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -9,6 +9,8 @@ export default function AgentNetworkCanvas() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let width, height, dpr, nodes = [], raf;
     const LINK_DIST = 140;
+    const lineColor = light ? "255,255,255" : "255,255,255";
+    const dotColor = light ? "255,255,255" : "245,243,238";
 
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -38,7 +40,7 @@ export default function AgentNetworkCanvas() {
           const dx = a.x - b.x, dy = a.y - b.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < LINK_DIST) {
-            ctx.strokeStyle = `rgba(255,122,69,${(1 - dist / LINK_DIST) * 0.16})`;
+            ctx.strokeStyle = `rgba(${lineColor},${(1 - dist / LINK_DIST) * 0.3})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -59,12 +61,12 @@ export default function AgentNetworkCanvas() {
         }
         const glow = 0.5 + Math.sin(n.pulse) * 0.2 + n.firing * 0.6;
         ctx.beginPath();
-        ctx.fillStyle = `rgba(245,243,238,${0.35 + glow * 0.3})`;
+        ctx.fillStyle = `rgba(${dotColor},${0.4 + glow * 0.35})`;
         ctx.arc(n.x, n.y, n.r + n.firing * 1.8, 0, Math.PI * 2);
         ctx.fill();
         if (n.firing > 0.05) {
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(255,122,69,${n.firing * 0.5})`;
+          ctx.strokeStyle = `rgba(${lineColor},${n.firing * 0.6})`;
           ctx.lineWidth = 1;
           ctx.arc(n.x, n.y, n.r + 6 + (1 - n.firing) * 14, 0, Math.PI * 2);
           ctx.stroke();
@@ -80,7 +82,7 @@ export default function AgentNetworkCanvas() {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
     };
-  }, []);
+  }, [light]);
 
   return (
     <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" aria-hidden="true" />

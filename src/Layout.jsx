@@ -42,15 +42,15 @@ export default function Layout() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#0A0A0C] text-white">
+    <div className="w-full min-h-screen bg-[#EAF4FD] text-[#0B2E5C]">
       {/* NAVBAR */}
       <nav
         className={`fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-6 sm:px-10 lg:px-16 py-5 transition-colors duration-300 ${
-          scrolled || location.pathname !== "/" ? "bg-[#0A0A0C]/90 backdrop-blur-md border-b border-white/10" : "bg-transparent"
+          scrolled || location.pathname !== "/" ? "bg-[#0B2E5C]/95 backdrop-blur-md border-b border-white/10" : "bg-transparent"
         }`}
       >
         <button onClick={goHome} style={fontDisplay} className="text-white font-bold uppercase text-xl sm:text-2xl tracking-wider ember-focus">
-          Velnex<span className="text-[#FF7A45]">AI</span>
+          Velnex<span className="text-[#7FC1FF]">AI</span>
         </button>
 
         <div className="hidden md:flex items-center gap-10" style={fontBody}>
@@ -67,7 +67,7 @@ export default function Layout() {
         <button
           onClick={() => goToSection("contact")}
           style={fontBody}
-          className="hidden md:flex items-center gap-2 border border-white/30 hover:border-[#FF7A45]/70 hover:bg-white/5 px-6 py-3 text-xs tracking-widest uppercase transition-colors ember-focus"
+          className="hidden md:flex items-center gap-2 border border-white/30 hover:border-[#7FC1FF]/70 hover:bg-white/5 px-6 py-3 text-xs tracking-widest uppercase transition-colors ember-focus text-white"
         >
           Book a demo <ArrowUpRight className="w-3.5 h-3.5" />
         </button>
@@ -78,10 +78,10 @@ export default function Layout() {
       </nav>
 
       {/* MOBILE MENU */}
-      <div className={`fixed inset-0 z-50 bg-black/95 backdrop-blur-sm transition-all duration-500 md:hidden ${menuOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+      <div className={`fixed inset-0 z-50 bg-[#0B2E5C]/98 backdrop-blur-sm transition-all duration-500 md:hidden ${menuOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}>
         <div className="flex items-center justify-between px-6 py-5">
           <span style={fontDisplay} className="text-white font-bold uppercase text-xl tracking-wider">
-            Velnex<span className="text-[#FF7A45]">AI</span>
+            Velnex<span className="text-[#7FC1FF]">AI</span>
           </span>
           <button onClick={() => setMenuOpen(false)} className="text-white ember-focus" aria-label="Close menu"><X className="w-7 h-7" /></button>
         </div>
@@ -112,20 +112,20 @@ export default function Layout() {
       <FloatingAgent />
 
       {/* FOOTER */}
-      <footer className="px-6 sm:px-10 lg:px-16 py-10 border-t border-white/10 flex flex-col gap-6">
+      <footer className="px-6 sm:px-10 lg:px-16 py-10 border-t border-[#0B2E5C]/10 bg-[#0B2E5C] flex flex-col gap-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <span style={fontDisplay} className="text-white font-bold uppercase text-lg tracking-wider">
-            Velnex<span className="text-[#FF7A45]">AI</span>
+            Velnex<span className="text-[#7FC1FF]">AI</span>
           </span>
           <div className="flex items-center gap-6 flex-wrap justify-center" style={fontBody}>
-            <Link to="/pricing" className="text-white/50 hover:text-white text-xs tracking-wide transition-colors ember-focus">Pricing</Link>
-            <Link to="/privacy-policy" className="text-white/50 hover:text-white text-xs tracking-wide transition-colors ember-focus">Privacy Policy</Link>
-            <Link to="/terms-of-service" className="text-white/50 hover:text-white text-xs tracking-wide transition-colors ember-focus">Terms of Service</Link>
-            <a href="https://www.instagram.com/velnex_ai/" target="_blank" rel="noreferrer" className="text-white/50 hover:text-white text-xs tracking-wide transition-colors ember-focus">Instagram</a>
-            <a href="https://www.facebook.com/people/VelnexAi/61591784258710/" target="_blank" rel="noreferrer" className="text-white/50 hover:text-white text-xs tracking-wide transition-colors ember-focus">Facebook</a>
+            <Link to="/pricing" className="text-white/60 hover:text-white text-xs tracking-wide transition-colors ember-focus">Pricing</Link>
+            <Link to="/privacy-policy" className="text-white/60 hover:text-white text-xs tracking-wide transition-colors ember-focus">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="text-white/60 hover:text-white text-xs tracking-wide transition-colors ember-focus">Terms of Service</Link>
+            <a href="https://www.instagram.com/velnex_ai/" target="_blank" rel="noreferrer" className="text-white/60 hover:text-white text-xs tracking-wide transition-colors ember-focus">Instagram</a>
+            <a href="https://www.facebook.com/people/VelnexAi/61591784258710/" target="_blank" rel="noreferrer" className="text-white/60 hover:text-white text-xs tracking-wide transition-colors ember-focus">Facebook</a>
           </div>
         </div>
-        <span style={fontBody} className="text-white/30 text-xs tracking-wide text-center sm:text-left">© 2026 Velnex AI. All rights reserved.</span>
+        <span style={fontBody} className="text-white/40 text-xs tracking-wide text-center sm:text-left">© 2026 Velnex AI. All rights reserved.</span>
       </footer>
     </div>
   );

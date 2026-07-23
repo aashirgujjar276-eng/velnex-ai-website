@@ -3,8 +3,8 @@ import { fontDisplay, fontBody, fontMono } from "../theme.js";
 
 const Section = ({ title, children }) => (
   <div className="mb-10">
-    <h2 style={fontDisplay} className="text-white text-lg uppercase tracking-tight mb-3">{title}</h2>
-    <div style={fontBody} className="text-white/70 text-sm leading-relaxed space-y-3">{children}</div>
+    <h2 style={fontDisplay} className="text-[#0B2E5C] text-lg uppercase tracking-tight mb-3">{title}</h2>
+    <div style={fontBody} className="text-[#123B73]/80 text-sm leading-relaxed space-y-3">{children}</div>
   </div>
 );
 
@@ -12,14 +12,14 @@ export default function Privacy() {
   return (
     <div className="pt-32 pb-24 px-6 sm:px-10 lg:px-16 max-w-3xl mx-auto">
       <div className="flex items-center gap-2 mb-4" style={fontMono}>
-        <span className="text-[#FF7A45] text-xs tracking-[0.3em] uppercase">Legal</span>
+        <span className="text-[#1E5FA8] text-xs tracking-[0.3em] uppercase">Legal</span>
       </div>
-      <h1 style={fontDisplay} className="uppercase tracking-tight text-white text-[clamp(2rem,5vw,3rem)] mb-3">
+      <h1 style={fontDisplay} className="uppercase tracking-tight text-[#0B2E5C] text-[clamp(2rem,5vw,3rem)] mb-3">
         Privacy Policy
       </h1>
-      <p style={fontBody} className="text-white/40 text-xs mb-14">Effective Date: [Insert launch date]</p>
+      <p style={fontBody} className="text-[#123B73]/50 text-xs mb-14">Effective Date: [Insert launch date]</p>
 
-      <p style={fontBody} className="text-white/70 text-sm leading-relaxed mb-10">
+      <p style={fontBody} className="text-[#123B73]/80 text-sm leading-relaxed mb-10">
         Velnex AI ("we," "us," or "our") operates the website velnexai.com (the "Site"). This
         Privacy Policy explains how we collect, use, and protect your information when you visit
         our Site or interact with our services.

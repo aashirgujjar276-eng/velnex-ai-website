@@ -19,11 +19,11 @@ export default function FloatingAgent() {
           open ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-90 pointer-events-none"
         }`}
       >
-        <div className="flex items-center justify-between px-4 py-3 bg-[#0A0A0C]" style={fontBody}>
+        <div className="flex items-center justify-between px-4 py-3 bg-[#0B2E5C]" style={fontBody}>
           <div className="flex items-center gap-2">
             <div className="relative">
-              <Bot className="w-5 h-5 text-[#FF7A45]" />
-              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-emerald-400 rounded-full ring-2 ring-[#0A0A0C]" />
+              <Bot className="w-5 h-5 text-[#1E5FA8]" />
+              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-emerald-400 rounded-full ring-2 ring-[#0B2E5C]" />
             </div>
             <div>
               <div className="text-white text-sm font-semibold leading-tight">Velnex AI Agent</div>
@@ -54,7 +54,7 @@ export default function FloatingAgent() {
           style={fontBody}
           className="flex items-center gap-2 bg-white text-[#14120F] text-sm font-medium pl-3 pr-4 py-2.5 rounded-full shadow-xl border border-black/10 hover:scale-[1.03] transition-transform ember-focus"
         >
-          <Sparkles className="w-4 h-4 text-[#FF7A45]" />
+          <Sparkles className="w-4 h-4 text-[#1E5FA8]" />
           Chat with our AI Agent
         </button>
       </div>
@@ -63,13 +63,13 @@ export default function FloatingAgent() {
       <button
         onClick={() => setOpen((o) => !o)}
         aria-label="Open Velnex AI Agent chat"
-        className="fixed z-[60] bottom-6 right-4 sm:right-8 w-16 h-16 rounded-full bg-[#FF7A45] hover:bg-[#ff8c5f] shadow-2xl flex items-center justify-center transition-transform hover:scale-105 ember-focus"
+        className="fixed z-[60] bottom-6 right-4 sm:right-8 w-16 h-16 rounded-full bg-[#1E5FA8] hover:bg-[#3E7FC8] shadow-2xl flex items-center justify-center transition-transform hover:scale-105 ember-focus"
       >
         {open ? (
-          <X className="w-6 h-6 text-black" />
+          <X className="w-6 h-6 text-white" />
         ) : (
           <div className="relative">
-            <Bot className="w-7 h-7 text-black" />
+            <Bot className="w-7 h-7 text-white" />
             <span className="absolute inset-0 rounded-full animate-ping bg-black/10" />
           </div>
         )}
