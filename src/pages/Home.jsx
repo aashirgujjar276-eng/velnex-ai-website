@@ -82,7 +82,7 @@ const handleSubmit = async (e) => {
 
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B2E5C]/50 via-transparent to-transparent" />
 
-        <div className="relative z-10 flex flex-col justify-center h-full pt-28 lg:pt-36 px-6 sm:px-10 lg:px-16">
+        <div className="relative z-10 flex flex-col justify-center h-full pt-16 lg:pt-36 px-6 sm:px-10 lg:px-16">
           
 
           
@@ -97,6 +97,13 @@ const handleSubmit = async (e) => {
   We build custom AI agents that work independently across your stack, handling tasks end-to-end —{" "}
   <span className="text-white font-bold">so your team doesn't have to.</span>
 </p>
+<div className="lg:hidden mt-6 fade-up-2">
+  <img
+    src="/features.png"
+    alt="Voice calls, multiple languages, 24/7 availability, enterprise security"
+    className="w-full rounded-xl shadow-lg"
+  />
+</div>
 
           <div className="fade-up-3 mt-8 lg:mt-10 flex flex-wrap items-center gap-4 sm:gap-6">
             <button onClick={() => scrollTo("contact")} style={fontBody} className="group flex items-center gap-2 bg-[#0B2E5C] hover:bg-[#123B73] text-white px-5 sm:px-7 py-3 sm:py-4 text-[11px] sm:text-xs tracking-widest uppercase font-semibold transition-colors ember-focus">
