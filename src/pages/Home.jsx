@@ -82,7 +82,7 @@ const handleSubmit = async (e) => {
 
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B2E5C]/50 via-transparent to-transparent" />
 
-        <div className="relative z-10 flex flex-col justify-center h-full pt-16 lg:pt-36 px-6 sm:px-10 lg:px-16">
+        <div className="relative z-10 flex flex-col justify-center h-full pt-8 lg:pt-36 px-6 sm:px-10 lg:px-16">
           
 
           
