@@ -58,7 +58,7 @@ export default function Terms() {
 
       <Section title="9. Contact Us">
         <p>Questions about these Terms can be sent to:</p>
-        <p>Email: rehmans@velnexai.com<br />Phone: +1 (438) 346-2951</p>
+        <p>Email: info@velnexai.com<br />Phone: +1 (438) 346-2951</p>
       </Section>
     </div>
   );

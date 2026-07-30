@@ -63,7 +63,7 @@ export default function Privacy() {
           <li>Request correction or deletion of your data</li>
           <li>Withdraw consent for communications at any time</li>
         </ul>
-        <p>To exercise these rights, contact us at rehmans@velnexai.com.</p>
+        <p>To exercise these rights, contact us at info@velnexai.com.</p>
       </Section>
 
       <Section title="6. Cookies">
@@ -80,7 +80,7 @@ export default function Privacy() {
 
       <Section title="9. Contact Us">
         <p>If you have questions about this Privacy Policy, contact us at:</p>
-        <p>Email: rehmans@velnexai.com<br />Phone: +1 (438) 346-2951</p>
+        <p>Email: info@velnexai.com<br />Phone: +1 (438) 346-2951</p>
       </Section>
     </div>
   );
