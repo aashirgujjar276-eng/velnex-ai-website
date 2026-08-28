@@ -52,10 +52,13 @@ export default function FloatingAgent() {
         <button
           onClick={() => setOpen(true)}
           style={fontBody}
-          className="flex items-center gap-2 bg-white text-[#14120F] text-sm font-medium pl-3 pr-4 py-2.5 rounded-full shadow-xl border border-black/10 hover:scale-[1.03] transition-transform ember-focus"
+          className="flex items-center gap-2.5 bg-white text-[#14120F] pl-3.5 pr-5 py-2 rounded-full shadow-xl border border-black/10 hover:scale-[1.03] transition-transform ember-focus"
         >
-          <Sparkles className="w-4 h-4 text-[#1E5FA8]" />
-          Chat with our AI Agent
+          <Sparkles className="w-4 h-4 text-[#1E5FA8] shrink-0" />
+          <span className="flex flex-col items-start leading-tight text-left">
+            <span className="text-[10px] text-[#14120F]/45 font-medium">Ask any question</span>
+            <span className="text-sm font-semibold">Chat with our AI Agent</span>
+          </span>
         </button>
       </div>
 

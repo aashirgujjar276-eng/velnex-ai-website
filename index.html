@@ -2,21 +2,62 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0B2E5C" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <!-- favicon.png is 256x256; a dedicated 180x180 apple-touch-icon.png would be sharper on iOS home screens. -->
+
+    <!-- Fonts: preconnect + direct <link> instead of a CSS @import, so the
+         browser's preloader discovers and starts fetching them immediately
+         rather than waiting on index.css to parse first. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    />
+
+    <!-- Default/fallback metadata. src/components/Seo.jsx overwrites these
+         per-page after React mounts and Googlebot renders JS, but these
+         static tags are what non-JS crawlers (some social-share bots) and
+         the very first paint see, so they're kept accurate for the homepage. -->
     <title>Velnex AI — Deploy. Automate. Scale.</title>
-    <meta name="description" content="Velnex AI builds custom AI agents that automate real work for businesses — handling support, workflows, data, and operations end-to-end." />
+    <meta name="description" content="Velnex AI builds custom AI agents that automate real work for businesses — handling calls, chats, bookings, and operations end-to-end." />
+    <link rel="canonical" href="https://velnexai.com/" />
+    <meta name="robots" content="index, follow" />
 
     <meta property="og:title" content="Velnex AI — Deploy. Automate. Scale." />
     <meta property="og:description" content="Custom AI agents that automate real work for businesses, end-to-end." />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image" content="https://velnexai.com/og-image.png" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://velnexai.com" />
+    <meta property="og:url" content="https://velnexai.com/" />
+    <meta property="og:site_name" content="Velnex AI" />
+    <meta property="og:locale" content="en_US" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Velnex AI — Deploy. Automate. Scale." />
     <meta name="twitter:description" content="Custom AI agents that automate real work for businesses, end-to-end." />
-    <meta name="twitter:image" content="/og-image.png" />
+    <meta name="twitter:image" content="https://velnexai.com/og-image.png" />
+
+    <!-- Sitewide Organization schema. Kept static here (rather than only
+         injected client-side) so it's present even for crawlers/tools that
+         don't execute JavaScript. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Velnex AI",
+        "url": "https://velnexai.com",
+        "logo": "https://velnexai.com/og-image.png",
+        "sameAs": [
+          "https://www.instagram.com/velnex_ai/",
+          "https://www.facebook.com/people/VelnexAi/61591784258710/"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

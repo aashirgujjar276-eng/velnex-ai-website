@@ -1,94 +1,160 @@
-import React from "react";
-import { ArrowUpRight } from "lucide-react";
-import { fontDisplay, fontBody, fontMono } from "../theme.js";
+import React, { useState } from "react";
+import { fontBody, fontMono } from "../theme.js";
 import Reveal from "../components/Reveal.jsx";
-import { useNavigate } from "react-router-dom";
-
-const FACTORS = [
-  ["Complexity", "How many steps/decisions the agent needs to handle"],
-  ["Integrations", "How many tools/systems it needs to connect to"],
-  ["Volume", "How much it needs to process — tickets, records, transactions"],
-  ["Ongoing support", "One-time build vs. continuous monitoring and refinement"],
-];
-
-const STEPS = [
-  ["01", "Book a call", "Tell us what you want automated"],
-  ["02", "Get a scoped quote", "Clear pricing based on your actual needs, no hidden fees"],
-  ["03", "Approve and build", "We start once you're confident in the plan"],
-];
+import Seo from "../components/Seo.jsx";
+import { organizationSchema, breadcrumbSchema } from "../lib/structuredData.js";
 
 export default function Pricing() {
-  const navigate = useNavigate();
-  const goToContact = () => {
-    navigate("/");
-    setTimeout(() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }), 100);
+  const [form, setForm] = useState({
+    businessName: "",
+    phone: "",
+    name: "",
+    email: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(null); // 'success' | 'error' | null
+
+  const handleQuoteSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus(null);
+    try {
+      const res = await fetch("https://velnex-contact.aashirgujjar276.workers.dev/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          enquiryType: "sales",
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          company: form.businessName,
+        }),
+      });
+      if (!res.ok) throw new Error();
+      setStatus("success");
+      setForm({ businessName: "", phone: "", name: "", email: "" });
+    } catch (err) {
+      setStatus("error");
+    }
+    setLoading(false);
   };
 
   return (
-    <div className="pt-32 pb-24 px-6 sm:px-10 lg:px-16 max-w-5xl mx-auto">
-      <Reveal>
-        <div className="flex items-center gap-2 mb-4" style={fontMono}>
-          <span className="text-[#1E5FA8] text-xs tracking-[0.3em] uppercase">Pricing</span>
-        </div>
-        <h1 style={fontDisplay} className="uppercase leading-[0.95] tracking-tight text-[#0B2E5C] text-[clamp(2rem,6vw,4rem)] mb-6">
-          Pricing built around your business, not a template.
-        </h1>
-        <p style={fontBody} className="text-[#123B73]/80 text-base leading-relaxed max-w-2xl mb-16">
-          Every agent we build is different — so is the cost. Tell us what you'd automate, and
-          we'll give you a clear quote based on scope, complexity, and integration needs.
-        </p>
-      </Reveal>
+    <>
+      <Seo
+        path="/pricing"
+        title="Pricing | Velnex AI"
+        description="Every business is different, so pricing is too. Tell us about your business and we'll follow up with a straightforward quote — no obligation."
+        jsonLd={[organizationSchema(), breadcrumbSchema([{ label: "Pricing", path: "/pricing" }])]}
+      />
 
-      <Reveal>
-        <h2 style={fontDisplay} className="text-[#0B2E5C] text-xl uppercase tracking-tight mb-4">Why custom pricing</h2>
-        <p style={fontBody} className="text-[#123B73]/80 text-sm leading-relaxed max-w-2xl mb-16">
-          No two businesses automate the same way. A support agent handling 50 tickets a day is a
-          different build than one managing 5,000 across ten integrations. Rather than force you
-          into a generic tier that doesn't fit, we scope every project individually — so you only
-          pay for what you actually need.
-        </p>
-      </Reveal>
+      <section className="section-padding bg-[#0B2E5C]">
+        <div className="max-w-2xl mx-auto">
+          <Reveal>
+            <p style={fontBody} className="text-body-lg text-white/80 mb-5">
+              Every business is different, so pricing is too. There's no flat rate here, because a
+              single AI receptionist and a full custom-built system running voice, chat, scheduling,
+              and CRM together aren't the same job.
+            </p>
+            <p style={fontBody} className="text-body-lg text-white/80 mb-5">
+              Your price depends on what you're automating, your call and booking volume, and
+              whether you need a standard setup or something fully custom built around your
+              existing tools and workflow.
+            </p>
+            <p style={fontBody} className="text-body-lg text-white/80 mb-10">
+              Tell us about your business and we'll follow up with a straightforward quote — no
+              obligation.
+            </p>
 
-      <Reveal>
-        <h2 style={fontDisplay} className="text-[#0B2E5C] text-xl uppercase tracking-tight mb-6">What affects your quote</h2>
-        <div className="grid sm:grid-cols-2 gap-px bg-white/10 mb-16">
-          {FACTORS.map(([title, desc]) => (
-            <div key={title} className="bg-white p-6 lg:p-8">
-              <div style={fontDisplay} className="text-[#0B2E5C] text-base uppercase tracking-tight mb-2">{title}</div>
-              <div style={fontBody} className="text-[#123B73]/60 text-sm leading-relaxed">{desc}</div>
-            </div>
-          ))}
-        </div>
-      </Reveal>
+            {status === "success" ? (
+              <div className="bg-white/5 border border-white/20 rounded-lg p-6 text-center">
+                <p style={fontBody} className="text-white text-sm">
+                  Thanks — we've got your details and will follow up with a quote shortly.
+                </p>
+              </div>
+            ) : (
+              <form className="space-y-5" onSubmit={handleQuoteSubmit} style={fontBody}>
+                <div>
+                  <label htmlFor="quote-business" className="block text-white/60 text-xs tracking-widest uppercase mb-2">
+                    Business name
+                  </label>
+                  <input
+                    id="quote-business"
+                    type="text"
+                    required
+                    value={form.businessName}
+                    onChange={(e) => setForm({ ...form, businessName: e.target.value })}
+                    className="w-full bg-white/5 border border-white/20 px-4 py-3 text-white text-sm rounded-lg placeholder:text-white/30"
+                    placeholder="Your business name"
+                  />
+                </div>
 
-      <Reveal>
-        <h2 style={fontDisplay} className="text-[#0B2E5C] text-xl uppercase tracking-tight mb-6">How it works</h2>
-        <div className="grid sm:grid-cols-3 gap-6 mb-16">
-          {STEPS.map(([num, title, desc]) => (
-            <div key={num}>
-              <div style={fontMono} className="text-[#1E5FA8] text-2xl mb-2">{num}</div>
-              <div style={fontDisplay} className="text-[#0B2E5C] text-lg uppercase tracking-tight mb-2">{title}</div>
-              <div style={fontBody} className="text-[#123B73]/60 text-sm leading-relaxed">{desc}</div>
-            </div>
-          ))}
-        </div>
-      </Reveal>
+                <div>
+                  <label htmlFor="quote-phone" className="block text-white/60 text-xs tracking-widest uppercase mb-2">
+                    Phone number
+                  </label>
+                  <input
+                    id="quote-phone"
+                    type="tel"
+                    required
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    className="w-full bg-white/5 border border-white/20 px-4 py-3 text-white text-sm rounded-lg placeholder:text-white/30"
+                    placeholder="(555) 123-4567"
+                  />
+                </div>
 
-      <Reveal>
-        <div className="border-t border-[#0B2E5C]/10 pt-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-          <h2 style={fontDisplay} className="text-[#0B2E5C] text-2xl uppercase tracking-tight">
-            Get a clear quote for your project.
-          </h2>
-          <button
-            onClick={goToContact}
-            style={fontBody}
-            className="group flex items-center gap-2 bg-[#1E5FA8] hover:bg-[#3E7FC8] text-black px-7 py-4 text-xs tracking-widest uppercase font-semibold transition-colors ember-focus w-fit"
-          >
-            Book a Demo
-            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </button>
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="quote-name" className="block text-white/60 text-xs tracking-widest uppercase mb-2">
+                      Your name
+                    </label>
+                    <input
+                      id="quote-name"
+                      type="text"
+                      required
+                      value={form.name}
+                      onChange={(e) => setForm({ ...form, name: e.target.value })}
+                      className="w-full bg-white/5 border border-white/20 px-4 py-3 text-white text-sm rounded-lg placeholder:text-white/30"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="quote-email" className="block text-white/60 text-xs tracking-widest uppercase mb-2">
+                      Email
+                    </label>
+                    <input
+                      id="quote-email"
+                      type="email"
+                      required
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
+                      className="w-full bg-white/5 border border-white/20 px-4 py-3 text-white text-sm rounded-lg placeholder:text-white/30"
+                      placeholder="you@company.com"
+                    />
+                  </div>
+                </div>
+
+                {status === "error" && (
+                  <p style={fontBody} className="text-red-300 text-sm">
+                    Something went wrong sending that — please try again, or reach out on our Contact page.
+                  </p>
+                )}
+
+                <div className="flex flex-wrap gap-4 pt-2">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="group flex items-center justify-center gap-2 bg-[#7FC1FF] hover:bg-white text-[#0B2E5C] px-7 py-4 text-xs tracking-widest uppercase font-bold rounded-lg transition-colors ember-focus disabled:opacity-60"
+                  >
+                    {loading ? "Sending..." : "Get a Quote"}
+                  </button>
+                </div>
+              </form>
+            )}
+          </Reveal>
         </div>
-      </Reveal>
-    </div>
+      </section>
+    </>
   );
 }

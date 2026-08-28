@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+/* Fonts are loaded via <link> tags in index.html (with preconnect) rather
+   than an @import here — the browser's preloader can start fetching them
+   immediately instead of waiting for this stylesheet to parse first. */
 
 @tailwind base;
 @tailwind components;
@@ -38,6 +40,69 @@ body {
 input:focus, textarea:focus {
   outline: none;
   border-color: #7FC1FF !important;
+}
+
+/* ---------------------------------------------------------------
+   GLOBAL DESIGN SYSTEM
+   Typography scale, spacing rhythm, buttons, cards.
+   Reuse these classes across every page for visual consistency.
+--------------------------------------------------------------- */
+@layer components {
+  .text-eyebrow {
+    @apply text-xs tracking-[0.3em] uppercase font-semibold;
+  }
+  .text-h1 {
+    @apply uppercase leading-[1] tracking-tight font-bold;
+    font-size: clamp(2rem, 4.4vw, 3.25rem);
+  }
+  .text-h2 {
+    @apply uppercase leading-[0.95] tracking-tight font-bold;
+    font-size: clamp(1.9rem, 4.5vw, 3rem);
+  }
+  .text-h3 {
+    @apply uppercase tracking-tight font-bold;
+    font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+  }
+  .text-body-lg {
+    @apply text-base sm:text-lg leading-relaxed;
+  }
+  .text-body {
+    @apply text-sm sm:text-base leading-relaxed;
+  }
+
+  .section-padding {
+    @apply px-6 sm:px-10 lg:px-16 py-20 lg:py-28;
+  }
+  .section-padding-sm {
+    @apply px-6 sm:px-10 lg:px-16 py-12 lg:py-16;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-[#0B2E5C] hover:bg-[#123B73]
+      text-white px-6 sm:px-7 py-3 sm:py-4 text-xs tracking-widest uppercase font-semibold
+      rounded-lg transition-colors ember-focus;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 border border-[#0B2E5C]/30
+      hover:border-[#0B2E5C]/60 hover:bg-[#0B2E5C]/5 text-[#0B2E5C] px-6 sm:px-7 py-3 sm:py-4
+      text-xs tracking-widest uppercase font-semibold rounded-lg transition-colors ember-focus;
+  }
+  .btn-tertiary {
+    @apply inline-flex items-center gap-1.5 text-[#1E5FA8] hover:text-[#0B2E5C]
+      text-sm font-semibold underline underline-offset-4 transition-colors ember-focus;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-1.5 text-[#0B2E5C]/70 hover:text-[#0B2E5C]
+      text-sm font-medium transition-colors ember-focus;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl border border-[#0B2E5C]/10 p-6 lg:p-8
+      hover:shadow-lg hover:-translate-y-0.5 transition-all;
+  }
+  .card-flat {
+    @apply bg-[#EAF4FD] rounded-xl p-6 lg:p-8;
+  }
 }
 @keyframes float-card {
   0%, 100% { transform: translateY(0px); }
