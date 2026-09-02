@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { fontDisplay, fontBody, fontMono } from "../theme.js";
 import Reveal from "../components/Reveal.jsx";
-import AgentNetworkCanvas from "../components/AgentNetworkCanvas.jsx";
+import HeroLiveAnimation from "../components/HeroLiveAnimation.jsx";
 import Button from "../components/ui/Button.jsx";
 import Card from "../components/ui/Card.jsx";
 import { solutions, aiSoftware, industries } from "../data/sitemap.js";
@@ -119,31 +119,43 @@ export default function Home() {
     <>
       <Seo path="/" title={DEFAULT_TITLE} description={DEFAULT_DESCRIPTION} jsonLd={organizationSchema()} />
       {/* ================= 1. HERO ================= */}
-      <section className="relative w-full min-h-screen overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#BEE3F8] via-[#4A8FDB] to-[#123B73]" />
-        <div className="absolute -top-24 -left-24 w-[460px] h-[460px] rounded-full bg-gradient-to-br from-[#0B2E5C] to-[#1E5FA8]" />
-        <div className="absolute top-[38%] right-10 sm:right-24 w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#7FC1FF]/70" />
-        <AgentNetworkCanvas />
+      <section className="relative w-full min-h-screen overflow-hidden bg-[#EAF4FD]">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#EAF4FD] via-[#BEE3F8] to-[#4A8FDB]" />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B2E5C]/50 via-transparent to-transparent" />
+        {/* Live animation — confined to a bounded box on the right side only,
+            clear of the (transparent, floating) header above and the text
+            column on the left. Desktop/tablet-landscape only; on smaller
+            screens there isn't room for it without collisions, so it's
+            hidden there rather than fought into place. */}
+        <div className="hidden lg:block absolute top-28 right-6 xl:right-16 bottom-32 left-[48%] xl:left-[44%] 2xl:left-[40%] pointer-events-none">
+          <HeroLiveAnimation />
+        </div>
 
-        <div className="absolute inset-0 z-10 flex flex-col justify-end pt-8 pb-16 lg:pb-24 px-6 sm:px-10 lg:px-16">
-          <h1 style={{ ...fontDisplay, fontSize: "clamp(2rem, 4.6vw, 3.4rem)" }} className="text-white uppercase leading-[1.02] tracking-tight drop-shadow-sm max-w-2xl">
-            AI Automation For Businesses
-          </h1>
+        {/* Scrim for text legibility — confined to roughly the left column
+            where the text actually sits, so it doesn't wash out the
+            animation on the right, which has nothing behind it to protect. */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B2E5C]/35 via-transparent to-transparent" />
+        <div className="absolute inset-y-0 left-0 w-full lg:w-[58%] xl:w-[52%] bg-gradient-to-r from-[#0B2E5C]/70 via-[#0B2E5C]/25 to-transparent" />
 
-          <p className="mt-5 lg:mt-6 text-white/90 text-base sm:text-lg leading-relaxed max-w-xl font-medium" style={fontBody}>
-            Velnex AI builds AI voice agents and chatbots that answer calls, book appointments,
-            and follow up automatically — so nothing falls through the cracks.
-          </p>
+        <div className="absolute inset-0 z-10 flex flex-col justify-end pt-24 pb-16 lg:pb-24 px-6 sm:px-10 lg:px-16">
+          <div className="lg:max-w-sm xl:max-w-lg">
+            <h1 style={{ ...fontDisplay, fontSize: "clamp(2rem, 4.6vw, 3.4rem)" }} className="text-white uppercase leading-[1.02] tracking-tight drop-shadow-sm max-w-2xl">
+              AI Automation For Businesses
+            </h1>
 
-          <div className="mt-7 lg:mt-8 flex flex-wrap items-center gap-4">
-            <Button href="/contact" variant="primary" icon={ArrowUpRight}>
-              Book a Demo
-            </Button>
-            <Button href="/solutions" variant="secondary" className="!text-white !border-white/40 hover:!bg-white/10">
-              Explore AI Solutions
-            </Button>
+            <p className="mt-5 lg:mt-6 text-white/90 text-base sm:text-lg leading-relaxed max-w-xl font-medium" style={fontBody}>
+              Velnex AI builds AI voice agents and chatbots that answer calls, book appointments,
+              and follow up automatically — so nothing falls through the cracks.
+            </p>
+
+            <div className="mt-7 lg:mt-8 flex flex-wrap items-center gap-4">
+              <Button href="/contact" variant="primary" icon={ArrowUpRight}>
+                Book a Demo
+              </Button>
+              <Button href="/solutions" variant="secondary" className="!text-white !border-white/40 hover:!bg-white/10">
+                Explore AI Solutions
+              </Button>
+            </div>
           </div>
         </div>
       </section>
